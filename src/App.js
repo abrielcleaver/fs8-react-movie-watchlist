@@ -7,14 +7,15 @@ import {
   Route,
   Redirect,
 } from 'react-router-dom';
-import Header from './Components/Header';
-import AuthPage from './Components/AuthPage';
-import ListPage from './Components/ListPage';
+import Header from './Components/Header/Header';
+import AuthPage from './Components/List/AuthPage';
+import ListPage from './Components/List/ListPage';
+import SearchPage from './Components/SearchPage';
 import { getUser } from './services/fetch-utils';
 
 function App() {
   // track user in state
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState(localStorage.getItem('supabase.auth.token'));
     // add a useEffect to get the user and inject the user object into state on load
   useEffect(() => {
     async function fetch() {
@@ -31,12 +32,28 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/">
-              {/* if there is a user, redirect to the list. Otherwise, render auth page. the AuthPage will need a function called setUser that can set the user state in App.js */}
-              <AuthPage />
+              {/* if there is a user, redirect to the search page. Otherwise, render auth page. the AuthPage will need a function called setUser that can set the user state in App.js */}
+              {
+                user
+                  ? <Redirect to="/search" />
+                  : <AuthPage setUser={setUser} />
+              }
+              
+            </Route>
+            <Route exact path="/watchlist">
+              {/* if there's not a signed in user, redirect them to the home page. Otherwise, take user them to the search page */}
+              {
+                !user
+                  ? <Redirect to="/" />
+                  : <SearchPage />
+              }
             </Route>
             <Route>
-              {/* if there's a user, take them to the list page. Otherwise, redirect them to the home/auth page */}
-
+              {
+                !user
+                  ? <Redirect to="/" />
+                  : <ListPage />
+              }
             </Route>
           </Switch>
         </main>
