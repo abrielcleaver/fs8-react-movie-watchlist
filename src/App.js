@@ -8,7 +8,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import Header from './Components/Header/Header';
-import AuthPage from './Components/List/AuthPage';
+import AuthPage from './Components/AuthPage';
 import ListPage from './Components/List/ListPage';
 import SearchPage from './Components/SearchPage';
 import { getUser } from './services/fetch-utils';
