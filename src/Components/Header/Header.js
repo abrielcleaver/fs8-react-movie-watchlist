@@ -1,5 +1,5 @@
 import React from 'react';
-import { logout } from '../services/fetch-utils';
+import { logout } from '../../services/fetch-utils';
 
 export default function Header({ user, setUser }) {
 
