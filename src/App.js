@@ -40,7 +40,7 @@ function App() {
               }
               
             </Route>
-            <Route exact path="/watchlist">
+            <Route exact path="/search">
               {/* if there's not a signed in user, redirect them to the home page. Otherwise, take user them to the search page */}
               {
                 !user
@@ -48,7 +48,7 @@ function App() {
                   : <SearchPage />
               }
             </Route>
-            <Route>
+            <Route exact path="/listpage">
               {
                 !user
                   ? <Redirect to="/" />
