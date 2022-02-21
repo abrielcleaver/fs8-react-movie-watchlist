@@ -6,12 +6,14 @@ import {
   Switch,
   Route,
   Redirect,
+  NavLink
 } from 'react-router-dom';
-import Header from './Components/Header/Header';
+// import Header from './Components/Header/Header';
 import AuthPage from './Components/AuthPage';
 import ListPage from './Components/List/ListPage';
 import SearchPage from './Components/SearchPage';
-import { getUser } from './services/fetch-utils';
+import { getUser, logout } from './services/fetch-utils';
+
 
 function App() {
   // track user in state
@@ -25,10 +27,31 @@ function App() {
     fetch();
 
   }, []);
+  async function handleLogout() {
+    // call the logout function
+    await logout();
+    // clear the user in state
+    setUser('');
+  }
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        {/* <Header /> */}
+        {
+          user && 
+            <ul>
+              <li>
+                <NavLink activeClassName="my-active-class" to="/search">Search Page</NavLink>
+              </li>
+              <li>
+                <NavLink activeClassName="my-active-class" to="/watchlist">Watchlist Page</NavLink>
+              </li>
+              <li>
+                <button onClick={handleLogout}>Logout</button>
+              </li>
+            </ul>
+        }
         <main>
           <Switch>
             <Route exact path="/">
