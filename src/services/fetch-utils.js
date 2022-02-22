@@ -1,4 +1,4 @@
-import { client } from './client';
+import { client, checkError } from './client';
 
 export function getUser() {
   return client.auth.session();
@@ -33,4 +33,31 @@ export async function searchMovies(query) {
 
 
   return json.data.results;
+}
+
+export async function getWatchList() {
+  const response = await client.
+    from('watchlist')
+    .select()
+    .order('id');
+
+  return checkError(response);
+}
+
+export async function addToWatchList(movie) {
+  const response = await client.
+    from('watchlist')
+    .insert(movie);
+
+  return checkError(response);
+}
+
+export async function watchMovie(id) {
+  const response = await client.
+    from('watchlist')
+    .update({ watched: true })
+    .match({ id })
+    .single();
+
+  return checkError(response);
 }
