@@ -7,16 +7,16 @@ export function getUser() {
 
 // signs an new user in and puts an auth token in local storage in the browser
 export async function signUp(email, password){
-  const response = await client.auth.signUp({ email, password });
+  const resp = await client.auth.signUp({ email, password });
   
-  return response.user;
+  return resp.user;
 }
 
 // signs an existing user in and puts an auth token in local storage in the browser
 export async function signIn(email, password){
-  const response = await client.auth.signIn({ email, password });
+  const resp = await client.auth.signIn({ email, password });
 
-  return response.user;
+  return resp.user;
 }
 
 // removes the token from local storage and redirects the user home
@@ -27,37 +27,37 @@ export async function logout() {
 }
 
 export async function searchMovies(query) {
-  const response = await fetch(`/.netlify/functions/movies-endpoint?searchQuery=${query}`);
+  const resp = await fetch(`/.netlify/functions/movies-endpoint?searchQuery=${query}`);
 
-  const json = await response.json();
+  const json = await resp.json();
 
 
   return json.data.results;
 }
 
 export async function getWatchList() {
-  const response = await client.
+  const resp = await client.
     from('watchlist')
     .select()
     .order('id');
 
-  return checkError(response);
+  return checkError(resp);
 }
 
 export async function addToWatchList(movie) {
-  const response = await client.
+  const resp = await client.
     from('watchlist')
     .insert(movie);
 
-  return checkError(response);
+  return checkError(resp);
 }
 
 export async function watchMovie(id) {
-  const response = await client.
+  const resp = await client.
     from('watchlist')
     .update({ watched: true })
     .match({ id })
     .single();
 
-  return checkError(response);
+  return checkError(resp);
 }
