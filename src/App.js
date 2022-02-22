@@ -71,7 +71,7 @@ function App() {
                   : <SearchPage />
               }
             </Route>
-            <Route exact path="/listpage">
+            <Route exact path="/watchlist">
               {
                 !user
                   ? <Redirect to="/" />
