@@ -1,12 +1,12 @@
 import React from 'react';
 import { watchMovie } from '../../services/fetch-utils';
 
-export default function ListItem({ movie, refreshWatchlist }) {
+export default function ListItem({ movie, refreshWatchList }) {
   async function handleClick() {
       // on click, change this movie from not watched to watched
     await watchMovie(movie.id);
 
-    await refreshWatchlist();
+    await refreshWatchList();
   }
 
   return (

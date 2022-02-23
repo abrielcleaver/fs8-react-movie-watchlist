@@ -12,7 +12,7 @@ export default function WatchListPage() {
   }
   return (
     <div>
-        Watch list Page
+       You are on the WatchList Page
       <div>
         <h2>My Movie Watch List</h2>
         <MovieList movies={movies} refreshWatchList={refreshWatchList} />
