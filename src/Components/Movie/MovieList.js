@@ -3,8 +3,9 @@ import { useLocation } from 'react-router-dom';
 import Movie from './Movie';
 import ListItem from '../List/ListItem.js';
 
-// on the search page, show a movie.
-// on the Listpage page, show a watchList item
+// on the SearchPage, show a movie.
+// on the WatchListPage, show a watchList item
+
 export default function MovieList({ 
   movies, 
   refreshWatchList, 
