@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 // import Header from './Components/Header/Header';
 import AuthPage from './Components/AuthPage';
-import ListPage from './Components/List/ListPage';
+import WatchListPage from './Components/List/WatchListPage';
 import SearchPage from './Components/SearchPage';
 import { getUser, logout } from './services/fetch-utils';
 
@@ -40,17 +40,14 @@ function App() {
         {/* <Header /> */}
         {
           user && 
-            <ul>
-              <li>
-                <NavLink activeClassName="my-active-class" to="/search">Search Page</NavLink>
-              </li>
-              <li>
-                <NavLink activeClassName="my-active-class" to="/watchlist">Watchlist Page</NavLink>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            </ul>
+            <>
+              <NavLink activeClassName="my-active-class" to="/search">Search Page</NavLink>
+             
+              <NavLink activeClassName="my-active-class" to="/watchlist">Watchlist Page</NavLink>
+            
+              <button onClick={handleLogout}>Logout</button>
+            </>
+              
         }
         <main>
           <Switch>
@@ -75,7 +72,7 @@ function App() {
               {
                 !user
                   ? <Redirect to="/" />
-                  : <ListPage />
+                  : <WatchListPage />
               }
             </Route>
           </Switch>
