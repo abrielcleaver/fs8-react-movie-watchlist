@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import ListItem from '../List/ListItem';
+import ListItem from '../List/ListItem.js';
 import Movie from './Movie';
 
 // on the search page, show a movie.
