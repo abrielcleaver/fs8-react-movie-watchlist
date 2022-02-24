@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Movie from './Movie';
-import ListItem from '../List/ListItem.js';
+import ListItem from '../List/ListEntry.js';
 
 // on the SearchPage, show a movie.
 // on the WatchListPage, show a watchList item
