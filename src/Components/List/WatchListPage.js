@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getWatchList } from '../../services/fetch-utils';
 import MovieList from '../Movie/MovieList';
 
@@ -10,6 +10,11 @@ export default function WatchListPage() {
     
     setMovies(myWatchList);
   }
+
+  useEffect(() => {
+    refreshWatchList();
+  }, []);
+  
   return (
     <div>
        You are on the WatchList Page

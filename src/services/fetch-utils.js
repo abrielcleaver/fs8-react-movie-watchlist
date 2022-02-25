@@ -36,6 +36,7 @@ export async function searchMovies(query) {
 }
 
 export async function getWatchList() {
+  // console.log('pillow');
   const resp = await client.
     from('watchlist')
     .select()
