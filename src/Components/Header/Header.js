@@ -10,11 +10,11 @@ export default function Header({ user, setUser }) {
     setUser('');
   }
   return (
-    <header>
+    <header> HELLO FROM THE HEADER
       {/* if there's a user, render a logout button here */}
       {
         user &&
-            <button onClick={handleLogout}>logout</button>
+            <button onClick={handleLogout}>LOGOUT</button>
       }
     </header>);
 }

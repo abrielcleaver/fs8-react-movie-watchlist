@@ -6,12 +6,14 @@ import {
   Switch,
   Route,
   Redirect,
+  NavLink
 } from 'react-router-dom';
-import Header from './Components/Header/Header';
+// import Header from './Components/Header/Header';
 import AuthPage from './Components/AuthPage';
-import ListPage from './Components/List/ListPage';
+import WatchListPage from './Components/List/WatchListPage';
 import SearchPage from './Components/SearchPage';
-import { getUser } from './services/fetch-utils';
+import { getUser, logout } from './services/fetch-utils';
+
 
 function App() {
   // track user in state
@@ -25,10 +27,28 @@ function App() {
     fetch();
 
   }, []);
+  async function handleLogout() {
+    // call the logout function
+    await logout();
+    // clear the user in state
+    setUser('');
+  }
+
   return (
     <Router>
       <div className="App">
-        <Header />
+        {/* <Header /> */}
+        {
+          user && 
+            <>
+              <NavLink activeClassName="my-active-class" to="/search">Search Page</NavLink>
+             
+              <NavLink activeClassName="my-active-class" to="/watchlist">Watchlist Page</NavLink>
+            
+              <button onClick={handleLogout}>Logout</button>
+            </>
+              
+        }
         <main>
           <Switch>
             <Route exact path="/">
@@ -40,7 +60,7 @@ function App() {
               }
               
             </Route>
-            <Route exact path="/watchlist">
+            <Route exact path="/search">
               {/* if there's not a signed in user, redirect them to the home page. Otherwise, take user them to the search page */}
               {
                 !user
@@ -48,11 +68,11 @@ function App() {
                   : <SearchPage />
               }
             </Route>
-            <Route>
+            <Route exact path="/watchlist">
               {
                 !user
                   ? <Redirect to="/" />
-                  : <ListPage />
+                  : <WatchListPage />
               }
             </Route>
           </Switch>

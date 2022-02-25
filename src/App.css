@@ -61,3 +61,39 @@ form button {
 form label input, form label textarea, form label select  {
   margin: 5px;
 }
+
+.movie-item {
+  width: 300px;
+  min-height: 500px;
+  background-color: lightblue;
+  margin: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.movie-item:hover {
+  border: solid 2px steelblue;
+}
+
+.movie-item img {
+  width: 150px;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.watchlist-item {
+  background-color: lightgreen;
+}
+
+.watched {
+  border: solid 3px steelblue;
+  cursor: initial;
+}
